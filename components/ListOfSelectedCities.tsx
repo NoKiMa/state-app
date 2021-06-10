@@ -2,6 +2,13 @@ import * as React from 'react';
 import { Text, View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import CityItem from './CityItem';
 
+// Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {addChooseСity} from '../redux/redux';
+// interfaces
+import {ReduxState} from '../models/redux.model';
+import {County, State} from '../models/state.model';
+
 const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -20,15 +27,17 @@ const DATA = [
 interface ListOfSelectedCitiesProps {}
 
 const ListOfSelectedCities = (props: ListOfSelectedCitiesProps) => {
+    let dispatch = useDispatch();
+    const reduxStore = useSelector((state: ReduxState) => state);
 
-const renderItem = ({item}) => <CityItem cityName={item.cityName} />;  
+const renderItem = ({item}) => <CityItem stateName={item.stateName} />;  
 
   return (
     <View style={styles.container}>
     <FlatList
-      data={DATA}
+      data={reduxStore.choicenState}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.stateName}
     />
   </View>
   );

@@ -1,31 +1,28 @@
-import {State, County} from '../../models/state.model'
-import restServiceApi from '../restServiceApi/restServiceApi'
+import {State, County} from '../../models/state.model';
+import restServiceApi from '../restServiceApi/restServiceApi';
 
 const dataPreperingService = {
-    getStatesObject: (states:any[]): State[] =>{
-        
-        return states.map(state=>{
-            let counties: County[] = [];
-            restServiceApi.getState(state.state).then(data =>{
-                data.data.forEach(item =>{
-                     counties.push({
-                         county: item.county,
-                         population:item.population
-                     })
-                })
-            })
-            let stateObject:State = {
-                stateName: state.state,
-                population:state.population,
-                counties: counties,
-                countiesNum:state.counties
-            }
-            console.log("stateObject", stateObject);
-          return stateObject;
-            
+getStatesObject: async () => {
+    
+    let stateArrObject = await restServiceApi.getStates()
+    let stateArr = await stateArrObject.data.map(state => {
+        return {
+          stateName: state.state,
+          population: state.population,
+          counties: [],
+          countiesNum: state.counties,
+        };
+      });
+    let stateWithCountyArr = await stateArr.map(state => {
+        restServiceApi.getState(state.stateName).then(data => {
+          state.counties = data.data;
+        });
 
-        })
-    }
-}
+        return state;
+      });
+      return stateWithCountyArr;
+   
+  },
+};
 
 export default dataPreperingService;

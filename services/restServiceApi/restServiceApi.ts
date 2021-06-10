@@ -1,7 +1,3 @@
-// import {
-//     BASE_OPEN_WEATHER_URL,
-//     OPEN_WEATHER_API_KEY,
-//   } from '../../config/main.const';
   
   const restServiceApi = {
     getStates: async () => {

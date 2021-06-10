@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { Text, View, FlatList,SafeAreaView, StyleSheet } from 'react-native';
+// import { useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import CityInfo from '../components/CityInfo';
 import ListOfCities from '../components/ListOfCities';
 import ListOfSelectedCities from '../components/ListOfSelectedCities';
 
-interface ListContainerProps {}
+// interface ListContainerProps {
+//     stateData: State [];
+// }
 
-const ListContainer = (props: ListContainerProps) => {
+const ListContainer = () => {
+
   return (
     <SafeAreaView style={styles.container}>
       <ListOfCities/>

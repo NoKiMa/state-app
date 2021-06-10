@@ -1,34 +1,47 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, ScrollView, FlatList} from 'react-native';
 import CityItem from './CityItem';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    cityName: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    cityName: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    cityName: 'Third Item',
-  },
-  
-];
+// Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {saveStatesData} from '../redux/redux';
+// interfaces
+import {ReduxState} from '../models/redux.model';
+import {County, State} from '../models/state.model';
+//services
+import dataPreperingService from '../services/dataPreperingService/dataPreperingService';
+// import restServiceApi from '../services/restServiceApi/restServiceApi';
 
-interface ListOfCitiesProps {}
+interface ListOfCitiesProps {
+  // stateData: State[];
+}
 
 const ListOfCities = (props: ListOfCitiesProps) => {
-  const renderItem = ({item}) => <CityItem cityName={item.cityName} />;
+  let dispatch = useDispatch();
+  const reduxStore = useSelector((state: ReduxState) => state);
+
+  const [statesInfo, setStatesInfo] = useState<State[]>([]);
+
+  useEffect(() => {
+    dataPreperingService.getStatesObject().then(data => {
+      setStatesInfo(data);
+    });
+  }, []);
+
+  useEffect(()=>{
+    dispatch(saveStatesData(statesInfo));
+  },[reduxStore,statesInfo]);
+
+  const renderItem = ({item}) => {
+    return <CityItem stateName={item.stateName} />;
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={DATA}
+        data={statesInfo}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.stateName}
       />
     </View>
   );

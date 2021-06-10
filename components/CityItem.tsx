@@ -1,16 +1,52 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+
+// Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {addChooseСity} from '../redux/redux';
+// interfaces
+import {ReduxState} from '../models/redux.model';
+import {County, State} from '../models/state.model';
+import DoubleClick from 'react-native-double-tap';
 
 type CityItemProps = {
-    cityName: string;
-    // id: string;
+    stateName: string;
+
 }
 
 const CityItem = (props: CityItemProps) => {
+  const [backCount, setBackCount] = useState(0);
+  const [backTimer, setBackTimer] = useState(0);
+  let dispatch = useDispatch();
+  const reduxStore = useSelector((state: ReduxState) => state);
+
+ const  handlerChoice = (stateNameChoicen: string)=>{
+     let listOfState:State[] = reduxStore.usData;
+     const choicenState:State = listOfState.find(state=>state.stateName === stateNameChoicen);
+     console.log("choicenState", choicenState);
+     if(choicenState){
+       let flag: State [] = reduxStore.choicenState.filter(state=> state.stateName === choicenState.stateName)
+       flag.length === 0? dispatch(addChooseСity(choicenState)): null;
+      }
+     
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize:15, color:"#000000"}}>{props.cityName}</Text>
+    <DoubleClick 
+    singleTap={() => {
+      console.log("single tap");
+    }}
+    doubleTap={() => {
+      handlerChoice(props.stateName)
+    }}
+    delay={200}
+    >
+        <View style={styles.container}>
+      <Text style={{fontSize:15, color:"#000000"}}>{props.stateName}</Text>
     </View>
+    </DoubleClick>
+      // </TouchableOpacity>
+    
   );
 };
 

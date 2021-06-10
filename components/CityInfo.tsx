@@ -4,6 +4,9 @@ import { Text, View, StyleSheet } from 'react-native';
 interface CityInfoProps {}
 
 const CityInfo = (props: CityInfoProps) => {
+
+    
+
   return (
     <View style={styles.container}>
       <Text style={{fontSize:23, color:'red'}}>CityInfo</Text>
