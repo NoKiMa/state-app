@@ -7,8 +7,7 @@ import {addChooseСity} from '../redux/redux';
 // interfaces
 import {ReduxState} from '../models/redux.model';
 import {County, State} from '../models/state.model';
-import DoubleClick from 'react-native-double-tap';
-
+import ButtonWrapper from 'react-native-button-wrapper';
 type CityItemProps = {
     stateName: string;
 
@@ -32,19 +31,18 @@ const CityItem = (props: CityItemProps) => {
   }
 
   return (
-    <DoubleClick 
-    singleTap={() => {
+    <ButtonWrapper
+    onPress={() => {
       console.log("single tap");
     }}
-    doubleTap={() => {
+    onDoublePress={() => {
       handlerChoice(props.stateName)
     }}
-    delay={200}
     >
         <View style={styles.container}>
       <Text style={{fontSize:15, color:"#000000"}}>{props.stateName}</Text>
     </View>
-    </DoubleClick>
+    </ButtonWrapper>
       // </TouchableOpacity>
     
   );

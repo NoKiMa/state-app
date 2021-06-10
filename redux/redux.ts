@@ -6,10 +6,17 @@ import{ReduxState} from '../models/redux.model';
 
 let usDataInit:State[] = [];
 let choicenStateInit:State[] = [];
+let statisticOfCurrentStateInit: State = {
+    counties:[],
+    stateName: '',
+    population: 0,
+    countiesNum: 0
+}
 
   const initialData: ReduxState = {
     usData : usDataInit,
-    choicenState: choicenStateInit
+    choicenState: choicenStateInit,
+    statisticOfCurrentState: statisticOfCurrentStateInit
   }
 
     const dataSlice = createSlice({

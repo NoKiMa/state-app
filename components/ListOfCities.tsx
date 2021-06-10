@@ -24,13 +24,13 @@ const ListOfCities = (props: ListOfCitiesProps) => {
 
   useEffect(() => {
     dataPreperingService.getStatesObject().then(data => {
+        // console.log(data);
       setStatesInfo(data);
+      setTimeout(()=>{
+        dispatch(saveStatesData(data));
+      },1000)
     });
   }, []);
-
-  useEffect(()=>{
-    dispatch(saveStatesData(statesInfo));
-  },[reduxStore,statesInfo]);
 
   const renderItem = ({item}) => {
     return <CityItem stateName={item.stateName} />;
