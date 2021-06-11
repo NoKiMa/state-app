@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, configureStore  } from '@reduxjs/toolkit'
-
 //interfaces
 import{State, County} from '../models/state.model'
 import{ReduxState} from '../models/redux.model';
@@ -27,8 +26,12 @@ let statisticOfCurrentStateInit: State = {
             reduxState.usData = action.payload;
             return reduxState;
           },
-          addChooseСity(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
+          addChooseState(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
             reduxState.choicenState.push(action.payload);
+            return reduxState;
+          },
+          addToCurrentStateInfo(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
+            reduxState.statisticOfCurrentState = action.payload;
             return reduxState;
           }
 
@@ -39,7 +42,9 @@ let statisticOfCurrentStateInit: State = {
 const rootReducer = dataSlice.reducer;
 
 
-export const {saveStatesData, addChooseСity} = dataSlice.actions;
+export const {saveStatesData, addChooseState, addToCurrentStateInfo} = dataSlice.actions;
 export type RootReducer = ReturnType<typeof store.getState>;
-export const store = configureStore({ reducer: rootReducer });
+export const store = configureStore({ 
+    reducer: rootReducer, 
+});
 export default rootReducer;

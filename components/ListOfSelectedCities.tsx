@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, ScrollView, FlatList } from 'react-native';
-import CityItem from './CityItem';
+import StateItem from './StateItem';
 
 // Redux
 import {useSelector, useDispatch} from 'react-redux';
@@ -30,7 +30,7 @@ const ListOfSelectedCities = (props: ListOfSelectedCitiesProps) => {
     let dispatch = useDispatch();
     const reduxStore = useSelector((state: ReduxState) => state);
 
-const renderItem = ({item}) => <CityItem stateName={item.stateName} />;  
+const renderItem = ({item}) => <StateItem stateName={item.stateName} />;  
 
   return (
     <View style={styles.container}>

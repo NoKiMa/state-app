@@ -1,7 +1,7 @@
 import * as React from 'react';
 // import { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import CityInfo from '../components/CityInfo';
+import StateInfo from '../components/StateInfo';
 import ListOfCities from '../components/ListOfCities';
 import ListOfSelectedCities from '../components/ListOfSelectedCities';
 
@@ -14,7 +14,7 @@ const ListContainer = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ListOfCities/>
-      <CityInfo/>
+      <StateInfo/>
       <ListOfSelectedCities/>
     </SafeAreaView>
   );

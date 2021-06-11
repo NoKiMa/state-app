@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, ScrollView, FlatList} from 'react-native';
-import CityItem from './CityItem';
+import StateItem from './StateItem';
 
 // Redux
 import {useSelector, useDispatch} from 'react-redux';
@@ -11,6 +11,7 @@ import {County, State} from '../models/state.model';
 //services
 import dataPreperingService from '../services/dataPreperingService/dataPreperingService';
 // import restServiceApi from '../services/restServiceApi/restServiceApi';
+
 
 interface ListOfCitiesProps {
   // stateData: State[];
@@ -24,16 +25,16 @@ const ListOfCities = (props: ListOfCitiesProps) => {
 
   useEffect(() => {
     dataPreperingService.getStatesObject().then(data => {
-        // console.log(data);
+        console.log(data);
       setStatesInfo(data);
       setTimeout(()=>{
-        dispatch(saveStatesData(data));
-      },1000)
+        dispatch(saveStatesData(statesInfo));
+      },3000)
     });
   }, []);
 
   const renderItem = ({item}) => {
-    return <CityItem stateName={item.stateName} />;
+    return <StateItem stateName={item.stateName} />;
   };
 
   return (
