@@ -10,10 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Redux
 import {useSelector, useDispatch} from 'react-redux';
-import {saveStatesData, setSearch} from '../redux/redux';
+import { setSearch} from '../redux/redux';
 // interfaces
 import {ReduxState} from '../models/redux.model';
-import {County, State} from '../models/state.model';
 
 const SearchBarContainer = () => {
   let dispatch = useDispatch();
@@ -50,15 +49,14 @@ export default SearchBarContainer;
 
 const styles = StyleSheet.create({
   main_container: {
-    flex: 0.7,
+    flex: 1.1,
     backgroundColor: '#fff',
-    height: 55,
     width: '85%',
     borderWidth: 1.5,
     borderColor: 'lightskyblue',
     borderRadius: 5,
     marginTop: 25,
-    marginBottom: 25,
+    marginBottom: 40,
     flexDirection: 'row',
   },
   input: {

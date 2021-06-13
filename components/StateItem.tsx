@@ -11,7 +11,7 @@ import {
 } from '../redux/redux';
 // interfaces
 import {ReduxState} from '../models/redux.model';
-import {County, State} from '../models/state.model';
+import {State} from '../models/state.model';
 
 let statisticOfCurrentStateInit: State = {
   counties: [],
@@ -53,8 +53,6 @@ const StateItem = (props: StateItemProps) => {
     const currentStateInfo: State = listOfState.find(
       state => state.stateName === currentStateName,
     );
-
-    console.log('currentStateInfo', currentStateInfo);
     if (currentStateInfo) {
       reduxStore.statisticOfCurrentState.stateName ===
       currentStateInfo.stateName

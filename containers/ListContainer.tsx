@@ -5,10 +5,6 @@ import StateInfo from '../components/StateInfo';
 import ListOfCities from '../components/ListOfCities';
 import ListOfSelectedCities from '../components/ListOfSelectedCities';
 
-// interface ListContainerProps {
-//     stateData: State [];
-// }
-
 const ListContainer = () => {
 
   return (
@@ -24,7 +20,7 @@ export default ListContainer;
 
 const styles = StyleSheet.create({
   container: {
-      flex:9.5,
+      flex:10,
       backgroundColor:"#fff",
       width:"85%",
       marginBottom: 50,

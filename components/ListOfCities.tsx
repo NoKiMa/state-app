@@ -10,7 +10,7 @@ import {ReduxState} from '../models/redux.model';
 import {County, State} from '../models/state.model';
 //services
 import dataPreperingService from '../services/dataPreperingService/dataPreperingService';
-import searchService from '../services/searchService/serchService';
+import searchService from '../services/searchService/searchService';
 
 
 interface ListOfCitiesProps {
