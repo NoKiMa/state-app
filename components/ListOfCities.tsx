@@ -40,7 +40,7 @@ const ListOfCities = (props: ListOfCitiesProps) => {
   },[reduxStore.usData])
 
   useEffect(()=>{
-    let searchState: State[] = reduxStore.searchState ==='' ? reduxStore.usData : searchService(statesInfo, reduxStore.searchState);
+    let searchState: State[] = reduxStore.searchState ==='' ? reduxStore.usData : searchService(reduxStore.usData, reduxStore.searchState);
     setStatesInfo(searchState);
   },[reduxStore.searchState])
 
