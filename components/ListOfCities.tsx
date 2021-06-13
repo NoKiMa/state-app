@@ -25,7 +25,6 @@ const ListOfCities = (props: ListOfCitiesProps) => {
 
   useEffect(() => {
     dataPreperingService.getStatesObject().then(data => {
-        console.log("data",data);
       setStatesInfo(data);
       return data;
     })
