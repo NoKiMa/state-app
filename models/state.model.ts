@@ -7,6 +7,15 @@ export interface State {
     population: number;
     countiesNum: number;
     counties: County[];
+    selected: boolean;
+  }
+
+  export interface StateInfoProps {
+    stateName: string;
+    population: number;
+    countiesNum: number;
+    counties:County[],
+    countiesPopulation: number;
   }
 
   

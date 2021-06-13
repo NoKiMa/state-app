@@ -14,12 +14,12 @@ let statisticOfCurrentStateInit: State = {
   population: 0,
   countiesNum: 0
 };
-type CityItemProps = {
+type StateItemProps = {
     stateName: string;
 
 }
 
-const StateItem = (props: CityItemProps) => {
+const StateItem = (props: StateItemProps) => {
   let dispatch = useDispatch();
   const reduxStore = useSelector((state: ReduxState) => state);
 

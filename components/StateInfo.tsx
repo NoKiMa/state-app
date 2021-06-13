@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, FlatList} from 'react-native';
 
 // Redux
@@ -6,16 +6,36 @@ import {useSelector, useDispatch} from 'react-redux';
 import {addChooseState, addToCurrentStateInfo} from '../redux/redux';
 // interfaces
 import {ReduxState} from '../models/redux.model';
-import {County, State} from '../models/state.model';
-import { useState } from 'react';
+import {State, County} from '../models/state.model';
 
-interface CityInfoProps {}
 
-const StateInfo = (props: CityInfoProps) => {
+interface StateInfoProps {}
+
+const StateInfo = (props: StateInfoProps) => {
+
+const [stateInfo, setStatesInfo] = useState<State>()
 
   
   let dispatch = useDispatch();
   const reduxStore = useSelector((state: ReduxState) => state.statisticOfCurrentState);
+
+  useEffect(()=>{
+    setStatesInfo({
+      stateName:reduxStore.stateName,
+      population: reduxStore.population,
+      counties: reduxStore.counties,
+      countiesNum: reduxStore.countiesNum,
+      selected:reduxStore.selected
+})
+  },[])
+
+  const setCountiesPopulation = (store:County[]) =>{
+    let res: number = 0;
+    store.forEach(county => {
+     res  = res + county.population;
+   })
+   return res;
+  }
 
 const renderItem = ({item})=>{
   return (<View>
@@ -49,12 +69,12 @@ const renderItem = ({item})=>{
       </View>
       <View style={styles.fields_container}>
         <Text style={styles.text_title}>{"Counties population"}</Text>
-        <Text style={styles.text}>{'70 0000'}</Text>
+        <Text style={styles.text}>{setCountiesPopulation(reduxStore.counties)}</Text>
       </View>
       <View style={styles.fields_container}>
         <Text style={styles.text_title}>{"State Population and Counties"}</Text>
         <Text style={styles.text}>
-          {" ==="}
+          {setCountiesPopulation(reduxStore.counties)===reduxStore.population? "equal": "not equal"}
         </Text>
       </View>
     </View>

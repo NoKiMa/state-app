@@ -9,7 +9,8 @@ let statisticOfCurrentStateInit: State = {
     counties:[],
     stateName: '',
     population: 0,
-    countiesNum: 0
+    countiesNum: 0,
+    selected:false,
 }
 
   const initialData: ReduxState = {
