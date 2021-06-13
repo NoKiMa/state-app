@@ -10,12 +10,12 @@ export interface State {
     selected: boolean;
   }
 
-  export interface StateInfoProps {
-    stateName: string;
-    population: number;
-    countiesNum: number;
-    counties:County[],
-    countiesPopulation: number;
-  }
+  // export interface StateInfoProps {
+  //   stateName: string;
+  //   population: number;
+  //   countiesNum: number;
+  //   counties:County[],
+  //   countiesPopulation: number;
+  // }
 
   

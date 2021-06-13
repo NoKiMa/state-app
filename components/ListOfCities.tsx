@@ -36,8 +36,12 @@ const ListOfCities = (props: ListOfCitiesProps) => {
     });
   }, []);
 
+  useEffect(()=>{
+    setStatesInfo(reduxStore.usData);
+  },[reduxStore.usData])
+
   const renderItem = ({item}) => {
-    return <StateItem stateName={item.stateName} />;
+    return <StateItem stateName={item.stateName} selected = {item.selected}/>;
   };
 
   return (

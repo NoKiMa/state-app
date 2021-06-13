@@ -11,6 +11,7 @@ getStatesObject: async () => {
           population: state.population,
           counties: [],
           countiesNum: state.counties,
+          selected: false
         };
       });
     let stateWithCountyArr = await stateArr.map(state => {

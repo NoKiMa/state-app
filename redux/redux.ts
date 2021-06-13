@@ -35,7 +35,21 @@ let statisticOfCurrentStateInit: State = {
           addToCurrentStateInfo(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
             reduxState.statisticOfCurrentState = action.payload;
             return reduxState;
-          }
+          },
+          deleteChooseState(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
+            reduxState.choicenState = reduxState.choicenState.filter(state => state.stateName !== action.payload.stateName)
+            return reduxState;
+          },
+          setSelectedState(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
+
+            reduxState.usData = reduxState.usData.map(state => {
+              if(state.stateName === action.payload.stateName){
+                state = action.payload
+              }
+              return state;
+            })
+            return reduxState;
+          },
 
         }
 
@@ -44,7 +58,7 @@ let statisticOfCurrentStateInit: State = {
 const rootReducer = dataSlice.reducer;
 
 
-export const {saveStatesData, addChooseState, addToCurrentStateInfo} = dataSlice.actions;
+export const {saveStatesData, addChooseState, addToCurrentStateInfo, deleteChooseState, setSelectedState} = dataSlice.actions;
 export type RootReducer = ReturnType<typeof store.getState>;
 export const store = configureStore({ 
     reducer: rootReducer, 
