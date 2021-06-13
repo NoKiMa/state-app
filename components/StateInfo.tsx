@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   fields_container: {
-    flex: 1,
+    flex: 1.3,
     marginHorizontal: 5,
     borderBottomWidth:0.5,
     borderColor:'lightskyblue'

@@ -10,7 +10,7 @@ import {ReduxState} from '../models/redux.model';
 import {County, State} from '../models/state.model';
 //services
 import dataPreperingService from '../services/dataPreperingService/dataPreperingService';
-// import restServiceApi from '../services/restServiceApi/restServiceApi';
+import searchService from '../services/searchService/serchService';
 
 
 interface ListOfCitiesProps {
@@ -38,6 +38,11 @@ const ListOfCities = (props: ListOfCitiesProps) => {
   useEffect(()=>{
     setStatesInfo(reduxStore.usData);
   },[reduxStore.usData])
+
+  useEffect(()=>{
+    let searchState: State[] = reduxStore.searchState ==='' ? reduxStore.usData : searchService(statesInfo, reduxStore.searchState);
+    setStatesInfo(searchState);
+  },[reduxStore.searchState])
 
   const renderItem = ({item}) => {
     return <StateItem stateName={item.stateName} selected = {item.selected}/>;
