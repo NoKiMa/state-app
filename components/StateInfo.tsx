@@ -18,7 +18,6 @@ const StateInfo = (props: CityInfoProps) => {
   const reduxStore = useSelector((state: ReduxState) => state.statisticOfCurrentState);
 
 const renderItem = ({item})=>{
-  console.log("item", item);
   return (<View>
     <Text style={{fontSize:15}}>{item.county}</Text>
     <Text style={{fontSize:15}}>{item.population}</Text>
@@ -28,16 +27,19 @@ const renderItem = ({item})=>{
   return (
     <View style={styles.container}>
       <View style={styles.fields_container}>
+        <Text style={styles.text_title}>{"State"}</Text>
         <Text style={styles.text}>{reduxStore.stateName}</Text>
       </View>
       <View style={styles.fields_container}>
-        <Text style={styles.text}>{`Population ${reduxStore.population} of people`}</Text>
+        <Text style={styles.text_title}>{"Population"}</Text>
+        <Text style={styles.text}>{reduxStore.population}</Text>
       </View>
-      <View style={styles.fields_container}>
-        <Text style={styles.text}>{`Numbers of Counties is ${reduxStore.countiesNum}`}</Text>
+      <View style={[styles.fields_container, {flexDirection: 'row'}]}>
+        <Text style={styles.text_title}>{"Counties:  "}</Text>
+        <Text style={styles.text}>{reduxStore.countiesNum}</Text>
       </View>
       <View style={styles.listOfcounties}>
-        <Text style={styles.text}>{'List of Counties'}</Text>
+        <Text style={styles.text_title}>{'List of Counties'}</Text>
         <FlatList
           data={reduxStore.counties}
           renderItem={renderItem}
@@ -46,11 +48,13 @@ const renderItem = ({item})=>{
         />
       </View>
       <View style={styles.fields_container}>
-        <Text style={styles.text}>{'General population of counties'}</Text>
+        <Text style={styles.text_title}>{"Counties population"}</Text>
+        <Text style={styles.text}>{'70 0000'}</Text>
       </View>
       <View style={styles.fields_container}>
+        <Text style={styles.text_title}>{"State Population and Counties"}</Text>
         <Text style={styles.text}>
-          {'Population of State  vs sum of Counties population'}
+          {" ==="}
         </Text>
       </View>
     </View>
@@ -71,12 +75,21 @@ const styles = StyleSheet.create({
   },
   fields_container: {
     flex: 1,
+    marginHorizontal: 5,
+    borderBottomWidth:0.5,
+    borderColor:'lightskyblue'
   },
   text:{
     fontSize: 17
   },
   listOfcounties:{
-    flex: 4,
-    marginVertical:4
-  }
+    flex: 3,
+    marginVertical:4,
+    borderBottomWidth:0.5,
+    borderColor:'lightskyblue'
+  },
+  text_title:{
+    fontSize: 17,
+    fontWeight: 'bold'
+  },
 });

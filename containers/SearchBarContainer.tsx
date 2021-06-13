@@ -12,10 +12,8 @@ const SearchBarContainer =  ()=>  {
             placeholder="Search"
             />
             </View>
-            
-        {/* <FontAwesome5 name="book" size={30} color="#4F8EF7" /> */}
         <View style={styles.icon_container}>
-           <Icon name="times" size={20} color="#323131" /> 
+           <Icon name="times" size={20} color="dimgray" /> 
         </View>
         
         </View>
@@ -40,6 +38,7 @@ const styles = StyleSheet.create({
     },
     input: {
         paddingLeft:15,
+        paddingTop: 7,
         fontSize:25,
 
     },
@@ -50,5 +49,6 @@ const styles = StyleSheet.create({
     },
     input_container:{
         flex:9,
+        marginHorizontal:4
     }
 })
