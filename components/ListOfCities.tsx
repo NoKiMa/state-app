@@ -25,10 +25,13 @@ const ListOfCities = (props: ListOfCitiesProps) => {
 
   useEffect(() => {
     dataPreperingService.getStatesObject().then(data => {
-        console.log(data);
+        console.log("data",data);
       setStatesInfo(data);
-      setTimeout(()=>{
-        dispatch(saveStatesData(statesInfo));
+      return data;
+    })
+    .then((data)=>{
+       setTimeout(()=>{
+        dispatch(saveStatesData(data));
       },3000)
     });
   }, []);

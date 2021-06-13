@@ -60,8 +60,6 @@ const StateItem = (props: CityItemProps) => {
       <Text style={{fontSize:15, color:"#000000"}}>{props.stateName}</Text>
     </View>
     </ButtonWrapper>
-      // </TouchableOpacity>
-    
   );
 };
 

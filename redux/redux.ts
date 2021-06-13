@@ -24,6 +24,7 @@ let statisticOfCurrentStateInit: State = {
         reducers: {
           saveStatesData(reduxState:ReduxState, action:PayloadAction<State[]>):ReduxState{
             reduxState.usData = action.payload;
+            console.log("dataSlice ",reduxState.usData);
             return reduxState;
           },
           addChooseState(reduxState:ReduxState, action:PayloadAction<State>):ReduxState{
