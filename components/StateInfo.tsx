@@ -82,7 +82,7 @@ export default StateInfo;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.1,
+    flex: 1,
     borderRightWidth: 1,
     borderLeftWidth: 1,
     borderColor: 'lightskyblue',
