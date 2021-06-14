@@ -14,7 +14,9 @@ const ListOfSelectedCities = (props: ListOfSelectedCitiesProps) => {
   
     const reduxStore = useSelector((state: ReduxState) => state);
 
-const renderItem = ({item}) => <StateItem stateName={item.stateName} selected ={item.selected}/>;  
+const renderItem = ({item}) => <StateItem stateName={item.stateName} selected ={item.selected}/>;
+
+console.log("reduxStore.choicenState",reduxStore.choicenState);
 
   return (
     <View style={styles.container}>
